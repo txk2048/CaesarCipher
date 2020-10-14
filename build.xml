@@ -1,0 +1,28 @@
+<project name="CaesarCipher">
+	<target name="build">
+		<mkdir dir="build/classes"/>
+		<javac srcdir="src" destdir="build/classes" includeantruntime="false" release="8">
+			<compilerarg value="-Xlint:unchecked"/>
+		</javac>
+	</target>
+	<target name="clean">
+		<delete dir="build" quiet="true"/>
+	</target>
+	<target name="format">
+		<java jar="tools/google-java-format-1.9-all-deps.jar" fork="true">
+			<arg line="-a -i"/>
+			<arg file="src/org/txk64/CaesarCipher.java"/>
+		</java>
+	</target>
+	<target name="jar" depends="build">
+		<mkdir dir="build/jar"/>
+		<jar basedir="build/classes" destfile="build/jar/${ant.project.name}.jar">
+			<manifest>
+				<attribute name="Main-Class" value="org.txk64.${ant.project.name}"/>
+			</manifest>
+		</jar>
+	</target>
+	<target name="run" depends="jar">
+		<java jar="build/jar/${ant.project.name}.jar" fork="true"/>
+	</target>
+</project>
