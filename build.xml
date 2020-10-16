@@ -7,6 +7,7 @@
 	</target>
 	<target name="clean">
 		<delete dir="build" quiet="true"/>
+		<delete dir="dist" quiet="true"/>
 	</target>
 	<target name="format">
 		<java jar="tools/google-java-format-1.9-all-deps.jar" fork="true">
@@ -21,6 +22,21 @@
 				<attribute name="Main-Class" value="org.txk64.${ant.project.name}"/>
 			</manifest>
 		</jar>
+	</target>
+	<target name="portable" depends="build">
+		<mkdir dir="dest"/>
+		<exec executable="jpackage">
+			<arg value="-d"/>
+			<arg value="dist"/>
+			<arg value="-i"/>
+			<arg value="build/jar"/>
+			<arg value="-n"/>
+			<arg value="CaesarCipher"/>
+			<arg value="-t"/>
+			<arg value="app-image"/>
+			<arg value="--main-jar"/>
+			<arg value="CaesarCipher.jar"/>
+		</exec>
 	</target>
 	<target name="run" depends="jar">
 		<java jar="build/jar/${ant.project.name}.jar" fork="true"/>
