@@ -1,7 +1,7 @@
 <project name="CaesarCipher">
 	<target name="build">
 		<mkdir dir="build/classes"/>
-		<javac srcdir="src" destdir="build/classes" includeantruntime="false" release="8">
+		<javac srcdir="src" destdir="build/classes" includeantruntime="false" release="15"/>
 			<compilerarg value="-Xlint:unchecked"/>
 		</javac>
 	</target>
