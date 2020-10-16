@@ -16,3 +16,11 @@ Run the following command. The built jar file will be placed in the `build/jar/`
 ```shell
 ant jar
 ```
+
+## Building portable build
+
+Run the following command. The portable distribution folder will be place in `build/dist`.
+
+```shell
+ant portable
+```
