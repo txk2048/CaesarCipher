@@ -1,13 +1,12 @@
 <project name="CaesarCipher">
 	<target name="build">
 		<mkdir dir="build/classes"/>
-		<javac srcdir="src" destdir="build/classes" includeantruntime="false" release="15"/>
+		<javac srcdir="src" destdir="build/classes" includeantruntime="false" release="15">
 			<compilerarg value="-Xlint:unchecked"/>
 		</javac>
 	</target>
 	<target name="clean">
 		<delete dir="build" quiet="true"/>
-		<delete dir="dist" quiet="true"/>
 	</target>
 	<target name="format">
 		<java jar="tools/google-java-format-1.9-all-deps.jar" fork="true">
@@ -23,11 +22,11 @@
 			</manifest>
 		</jar>
 	</target>
-	<target name="portable" depends="build">
-		<mkdir dir="dest"/>
+	<target name="portable" depends="jar">
+		<mkdir dir="build/portable"/>
 		<exec executable="jpackage">
 			<arg value="-d"/>
-			<arg value="dist"/>
+			<arg value="build/portable"/>
 			<arg value="-i"/>
 			<arg value="build/jar"/>
 			<arg value="-n"/>
